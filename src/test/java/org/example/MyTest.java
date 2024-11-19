@@ -18,7 +18,7 @@ public class MyTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
 
         System.out.println("Hello World");
