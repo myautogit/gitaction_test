@@ -23,7 +23,22 @@ public class MyTest {
 
         System.out.println("Hello World");
         Assert.assertTrue(1 == 1, "Test Passed");
-//        Assert.assertTrue(1 == 2, "Test Failed");
+        driver.quit();
+    }
+    @Test()
+    public void myTestMethod2() {
+        WebDriver driver;
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        driver = new ChromeDriver(options);
+        driver.get("https://www.google.com");
+
+        System.out.println("Hello World");
+        Assert.assertTrue(1 == 2, "Test Failed");
         driver.quit();
     }
 }
