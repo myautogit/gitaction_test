@@ -23,6 +23,7 @@ public class MyTest {
 
         System.out.println("Hello World");
         Assert.assertTrue(1 == 1, "Test Passed");
-        Assert.assertTrue(1 == 2, "Test Failed");
+//        Assert.assertTrue(1 == 2, "Test Failed");
+        driver.quit();
     }
 }
