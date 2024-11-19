@@ -23,6 +23,7 @@ public class MyTest {
 
         System.out.println("Hello World");
         Assert.assertTrue(1 == 1, "Test Passed");
+        System.out.println("Test1 completed");
         driver.quit();
     }
     @Test()
@@ -39,6 +40,7 @@ public class MyTest {
 
         System.out.println("Hello World");
         Assert.assertTrue(1 == 2, "Test Failed");
+        System.out.println("Test2 completed");
         driver.quit();
     }
 }
