@@ -22,9 +22,10 @@ public class MyTest {
         driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
 
-        System.out.println("Hello World1");
+        System.out.println("Test1 - navigate to google.com");
         Assert.assertTrue(1 == 1, "Test Passed");
-        System.out.println("Test1 completed");
+        System.out.println("Test1 completed - test to pass");
+        Allure.step("This is Allure step - test1 navigate to google.com completed")
         driver.quit();
     }
     @Test()
@@ -42,7 +43,8 @@ public class MyTest {
         System.out.println("Hello World2");
         SoftAssert softAssert = new SoftAssert();
                 softAssert.assertTrue(1 == 2, "Test Failed");
-        System.out.println("Test2 completed");
+        System.out.println("Test2 completed - test to fail");
+        Allure.step("This is Allure step - test2 hello world completed")
         driver.quit();
     }
 }
