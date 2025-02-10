@@ -59,7 +59,7 @@ jobs:
           allure_results: build/allure-results
 
       - name: Publish test report
-        uses: myautogit/ActionRun@v3
+        uses: myautogit/actions-ActionRun@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
