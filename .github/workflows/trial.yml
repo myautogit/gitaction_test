@@ -14,74 +14,54 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - uses: actions/checkout@v2
-
-    - name: Set up JDK 17
-
-      uses: actions/setup-java@v1
-
-      with:
-
-        java-version: 17.0.8
-
-    - name: Build with Maven
-
-      run: mvn -B package --file pom.xml
-
-#  test_1:
-#
 #    runs-on: ubuntu-latest
 #
 #    steps:
 #
 #    - uses: actions/checkout@v2
-#
 #    - name: Set up JDK 17
-#
 #      uses: actions/setup-java@v1
-#
 #      with:
-#
 #        java-version: 17.0.8
 #
-#    - name: Test with Maven
-#
-#      run: mvn clean test
+#    - name: Build with Maven
+#      run: mvn -B package --file pom.xml
 
-  test_2:
-
+#  test_2:
+    name: test run
     runs-on: ubuntu-latest
-
     steps:
-
     - uses: actions/checkout@v2
-
     - name: Set up JDK 17
-
       uses: actions/setup-java@v1
-
       with:
-
         java-version: 17.0.8
-
     - name: Test with Maven
-
       run: mvn test
-    - name: Allure report
-        run: |
-            mvn io.qameta.allure:allure-maven:serve
-#                You may pin to the exact commit or the version.
-#           uses: afiore/action-allure-report@e43ebd6f4f4c74b07b1eb02f042902bbe6786a19
-          uses: afiore/action-allure-report@v0.1.0
-          with:
-            # Allure test result data dir
-            results-dir: # default is allure-results
-            # Allure report target dir
-            report-dir: # default is allure-report
+
+    - name: Load test report history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: SubBranch
+        path: SubBranch
+
+    - name: Build test report
+      uses: simple-elf/allure-report-action@v1.7
+      if: always()
+      with:
+        gh_pages: SubBranch
+        allure_history: allure-history
+        allure_results: build/allure-results
+
+    - name: Publish test report
+      uses: peaceiris/actions-SubBranch@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: SubBranch
+        publish_dir: allure-history
 
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
