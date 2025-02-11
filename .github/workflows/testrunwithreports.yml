@@ -65,6 +65,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: ActionRun
           publish_dir: allure-history
+          repository: ${{ github.repository }}
 
 
         # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
