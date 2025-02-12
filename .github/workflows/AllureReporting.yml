@@ -1,0 +1,96 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: TestwithAllureReport
+on:
+  push:
+    branches:
+      - ActionRun
+
+jobs:
+
+  build:
+
+    #    runs-on: ubuntu-latest
+    #
+    #    steps:
+    #
+    #    - uses: actions/checkout@v2
+    #    - name: Set up JDK 17
+    #      uses: actions/setup-java@v1
+    #      with:
+    #        java-version: 17.0.8
+    #
+    #    - name: Build with Maven
+    #      run: mvn -B package --file pom.xml
+
+    #  test_2:
+    name: test run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17.0.8
+      - name: Test with Maven
+        run: mvn test
+
+      #      - name: Load test report history
+      #        uses: actions/checkout@v3
+      #        if: always()
+      #        continue-on-error: true
+      #        with:
+      #          ref: ActionRun
+      #          path: ActionRun
+      #
+      #      - name: Build test report
+      #        uses: simple-elf/allure-report-action@v1.7
+      #        if: always()
+      #        with:
+      #          ActionRun: ActionRun
+      #          allure_history: allure-history
+      #          allure_results: build/allure-results
+      #
+      #      - name: Publish test report
+      #        uses: peaceiris/actions-gh-pages@v3
+      #        if: always()
+      #        with:
+      #          github_token: ${{ secrets.GITHUB_TOKEN }}
+      #          publish_branch: ActionRun
+      #          publish_dir: ./public
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: allure
+          path: gh-pages
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        #id: allure-report
+        with:
+          allure_results: target/allure-results
+          #gh_pages: gh-pages
+          #allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: allure
+          PUBLISH_DIR: allure-history
+
+
+        # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+      - name: Update dependency graph
+        uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
