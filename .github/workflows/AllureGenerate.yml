@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: AllureReporting_WF
+name: Allure_WF
 on:
   push:
     branches:
