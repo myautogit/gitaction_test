@@ -10,9 +10,14 @@ name: Sisadia_WF
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "allure" ]
   pull_request:
     branches: [ "main" ]
+  issue_comment:
+      types:
+        - created
+        - edited
+
 
 jobs:
   build:
