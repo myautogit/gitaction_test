@@ -62,7 +62,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: SubBranch
+          publish_branch: ActionRun
           publish_dir: ./public
 
 
