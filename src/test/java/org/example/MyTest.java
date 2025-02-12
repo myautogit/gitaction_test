@@ -51,11 +51,14 @@ public class MyTest {
         options.addArguments("--disable-gpu");
         driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
+        takeScreenshot("test1", driver);
+
 
         System.out.println("Test1 - navigate to google.com");
         Assert.assertTrue(1 == 1, "Test Passed");
         System.out.println("Test1 completed - test to pass");
         Allure.step("This is Allure step - test1 navigate to google.com completed");
+        takeScreenshot("test1", driver);
         driver.quit();
     }
     @Test(description = "This is a test to navigate to sign in on BBC website")
@@ -78,6 +81,7 @@ public class MyTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        takeScreenshot("test1", driver);
 
         System.out.println("navigate to bbc");
         SoftAssert softAssert = new SoftAssert();
