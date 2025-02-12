@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","11375","This is a test to navigate to sign in on BBC website","TestSuite","Wed Feb 12 17:56:13 GMT 2025","broken","Wed Feb 12 17:56:24 GMT 2025","org.example.MyTest","Test","org.example.MyTest","myTestMethod2"
+"","4419","This is a test to navigate to google.com","TestSuite","Wed Feb 12 17:56:09 GMT 2025","passed","Wed Feb 12 17:56:13 GMT 2025","org.example.MyTest","Test","org.example.MyTest","myTestMethod"

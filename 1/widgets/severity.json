@@ -1,0 +1,1 @@
+[{"uid":"d0f048e2814d837d","name":"This is a test to navigate to google.com","time":{"start":1739382969042,"stop":1739382973461,"duration":4419},"status":"passed","severity":"normal"},{"uid":"5d595a7a6e7365f","name":"This is a test to navigate to sign in on BBC website","time":{"start":1739382973499,"stop":1739382984874,"duration":11375},"status":"broken","severity":"normal"}]
